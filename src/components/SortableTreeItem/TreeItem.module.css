@@ -1,0 +1,301 @@
+.Wrapper {
+    list-style: none;
+    box-sizing: border-box;
+    padding-left: var(--spacing);
+    margin-bottom: -1px;
+    position: relative;
+
+    &.group {
+        margin-left: 8px;
+        padding-left: calc(var(--spacing) + 16px);
+    }
+
+    &.locked {
+        opacity: 0.6;
+        pointer-events: none;
+    }
+
+    &.locked .TreeItem {
+        background-color: #f5f5f5;
+    }
+
+    &.draft {
+        opacity: 0.7;
+    }
+
+    &.draft .TreeItem {
+        background-color: #fff9c4;
+        border-style: dashed;
+    }
+
+    &.clone {
+        display: inline-block;
+        pointer-events: none;
+        padding: 5px 0 0 10px;
+
+        .TreeItem {
+            --vertical-padding: 5px;
+
+            padding-right: 24px;
+            border-radius: 4px;
+            box-shadow: 0px 15px 15px 0 rgba(34, 33, 81, 0.1);
+        }
+    }
+
+    &.ghost {
+        &.indicator {
+            opacity: 1;
+            position: relative;
+            z-index: 1;
+            margin-bottom: -1px;
+
+            .TreeItem {
+                position: relative;
+                padding: 0;
+                height: 8px;
+                border-color: #2389ff;
+                background-color: #56a1f8;
+
+                &:before {
+                    position: absolute;
+                    left: -8px;
+                    top: -4px;
+                    display: block;
+                    content: '';
+                    width: 12px;
+                    height: 12px;
+                    border-radius: 50%;
+                    border: 1px solid #2389ff;
+                    background-color: #ffffff;
+                }
+
+                > * {
+                    opacity: 0;
+                    height: 0;
+                }
+            }
+        }
+
+        &:not(.indicator) {
+            opacity: 0.5;
+        }
+
+        .TreeItem > * {
+            box-shadow: none;
+            background-color: transparent;
+        }
+    }
+}
+
+.TreeItem {
+    --vertical-padding: 10px;
+
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: var(--vertical-padding) 10px;
+    background-color: #fff;
+    border: 1px solid #dedede;
+    color: #222;
+    box-sizing: border-box;
+}
+
+.Text {
+    flex-grow: 1;
+    padding-left: 0.5rem;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.Count {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: #2389ff;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #fff;
+}
+
+.disableInteraction {
+    pointer-events: none;
+}
+
+.disableSelection,
+.clone {
+    .Text,
+    .Count {
+        user-select: none;
+        -webkit-user-select: none;
+    }
+}
+
+.Collapse {
+    svg {
+        transition: transform 250ms ease;
+    }
+
+    &.collapsed svg {
+        transform: rotate(-90deg);
+    }
+}
+
+.bracket {
+    position: absolute;
+    font-size: 24px;
+    font-weight: bold;
+    z-index: 1;
+}
+
+.logicToggle {
+    padding: 4px 8px;
+    border: none;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-right: 8px;
+    transition: all 0.2s;
+}
+
+.andToggle {
+    background-color: #2389ff;
+    color: white;
+}
+
+.andToggle:hover {
+    background-color: #1976d2;
+}
+
+.orToggle {
+    background-color: #4caf50;
+    color: white;
+}
+
+.orToggle:hover {
+    background-color: #388e3c;
+}
+
+.editableText {
+    cursor: pointer;
+    border-bottom: 1px dashed transparent;
+    transition: border-color 0.2s;
+}
+
+.editableText:hover {
+    border-bottom-color: #2389ff;
+}
+
+.groupActions {
+    display: flex;
+    gap: 4px;
+    margin-left: auto;
+}
+
+.actionButton {
+    padding: 4px 8px;
+    border-radius: 4px;
+    background: #575757;
+    cursor: pointer;
+    font-size: 11px;
+    transition: all 0.2s;
+}
+
+.actionButton:hover {
+    background-color: #6c6c6c;
+}
+
+.lockButton.locked {
+    background-color: #ff5722;
+    color: white;
+    border-color: #ff5722;
+    pointer-events: all;
+}
+
+.draftButton.draft {
+    background-color: #ff9800;
+    color: white;
+    border-color: #ff9800;
+}
+
+.disableSelection,
+.clone {
+    .Text,
+    .Count {
+        user-select: none;
+        -webkit-user-select: none;
+    }
+}
+
+.Collapse {
+    svg {
+        transition: transform 250ms ease;
+    }
+
+    &.collapsed svg {
+        transform: rotate(-90deg);
+    }
+}
+
+.disableInteraction {
+    pointer-events: none;
+}
+
+.filter .Text {
+    cursor: pointer;
+}
+
+.filter .Text:hover {
+    background-color: #e3f2fd;
+    border-radius: 4px;
+}
+
+.filterFields {
+    display: flex;
+    gap: 8px;
+    margin-left: 8px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.filterSelect {
+    padding: 4px 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 12px;
+    min-width: 100px;
+    transition: border-color 0.2s;
+}
+
+.filterSelect:focus {
+    border-color: #2196f3;
+    outline: none;
+}
+
+.filterInput {
+    padding: 4px 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 12px;
+    min-width: 120px;
+    transition: border-color 0.2s;
+}
+
+.filterInput:focus {
+    border-color: #2196f3;
+    outline: none;
+}
+
+.filterSelect:disabled,
+.filterInput:disabled {
+    background-color: #f5f5f5;
+    color: #999;
+    cursor: not-allowed;
+}
